@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+import {
+    Configuration,
+    Layout,
+    useLayoutNavigation,
+    Text,
+    Button,
+  } from 'react-md';
+  import GameInfo from './GameInfo'
+  import Prediction from './Prediction'
+  import './App.scss';
+  
+  // see @react-md/layout package for info on the main navigation
+  const routes = {};
+  function App() {
+    return (
+      <Configuration>
+        <Layout
+          title="Predict a Games Popularity"
+          navHeaderTitle="Game Oracle"
+          treeProps={useLayoutNavigation(routes, window.location.pathname)}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+        <GameInfo />
+        <Prediction />
+        </Layout>
+      </Configuration>
+    );
+  }
 
 export default App;

@@ -1,0 +1,7 @@
+
+@import "~react-md/dist/react-md";
+#layout-title {
+    color: white;
+}
+// this will include all the styles from react-md
+@include react-md-utils;
