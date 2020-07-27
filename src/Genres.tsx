@@ -3,6 +3,7 @@ import { Chip } from "@react-md/chip";
 import { Text } from "@react-md/typography";
 
 import styles from "./Genres.module.scss";
+import { UpdateGame, Game } from "./Types";
 
 const genres = [
     'Action',
@@ -19,7 +20,12 @@ const genres = [
     'Casual'
 ];
 
-const Genres: FC = () => {
+type Props = {
+  game:Game,
+  updateGame:UpdateGame
+}
+
+const Genres: FC<Props> = ({game, updateGame}) => {
   const [selectedAmenities, setSelected] = useState<string[]>([]);
   return (
     <>
@@ -27,26 +33,27 @@ const Genres: FC = () => {
         Genres:
       </Text>
       <div className={styles.container}>
-        {genres.map((genres) => {
-          const selected = selectedAmenities.includes(genres);
+        {genres.map((genre) => {
+          const selected = selectedAmenities.includes(genre);
 
           return (
             <Chip
-              key={genres}
-              selected={selected}
+              key={genre}
+              selected={!!game[genre]}
               className={styles.chip}
               selectedThemed
-              onClick={() =>
+              onClick={() => {
+                updateGame(genre, Number(!selected))
                 setSelected((prevSelected) => {
-                  if (prevSelected.includes(genres)) {
-                    return prevSelected.filter((am) => am !== genres);
+                  if (prevSelected.includes(genre)) {
+                    return prevSelected.filter((am) => am !== genre);
                   }
 
-                  return [...prevSelected, genres];
+                  return [...prevSelected, genre];
                 })
-              }
+              }}
             >
-              {genres}
+              {genre}
             </Chip>
           );
         })}

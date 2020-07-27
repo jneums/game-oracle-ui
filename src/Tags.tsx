@@ -3,8 +3,9 @@ import { Chip } from "@react-md/chip";
 import { Text } from "@react-md/typography";
 
 import styles from "./Tags.module.scss";
+import { UpdateGame, Game } from "./Types";
 
-const tags = [
+const tags:string[] = [
     '2D',
     'Anime',
     'Arcade',
@@ -47,34 +48,41 @@ const tags = [
     'Visual Novel'
 ];
 
-const Tags: FC = () => {
+type Props = {
+  game:Game,
+  updateGame:UpdateGame
+}
+
+const Tags: FC<Props> = ({game, updateGame}) => {
   const [selectedAmenities, setSelected] = useState<string[]>([]);
+  
   return (
     <>
       <Text type="headline-5" className={styles.header}>
         Tags:
       </Text>
       <div className={styles.container}>
-        {tags.map((tags) => {
-          const selected = selectedAmenities.includes(tags);
+        {tags.map(tag => {
+          const selected = selectedAmenities.includes(tag);
 
           return (
             <Chip
-              key={tags}
-              selected={selected}
+              key={tag}
+              selected={!!game[tag]}
               className={styles.chip}
               selectedThemed
-              onClick={() =>
+              onClick={() => {
+                updateGame(tag, Number(!selected))
                 setSelected((prevSelected) => {
-                  if (prevSelected.includes(tags)) {
-                    return prevSelected.filter((am) => am !== tags);
+                  if (prevSelected.includes(tag)) {
+                    return prevSelected.filter((am) => am !== tag);
                   }
 
-                  return [...prevSelected, tags];
+                  return [...prevSelected, tag];
                 })
-              }
+              }}
             >
-              {tags}
+              {tag}
             </Chip>
           );
         })}
