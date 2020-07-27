@@ -3,5 +3,17 @@
 #layout-title {
     color: white;
 }
+
+#layout-header {
+    color: white;
+}
+
+#reset {
+    margin-right:24px; 
+}
+
+#random {
+    margin-right: 34px;
+}
 // this will include all the styles from react-md
 @include react-md-utils;

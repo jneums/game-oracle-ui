@@ -1,20 +1,24 @@
-import React from 'react'
+import React, { FC } from 'react'
 import Genres from './Genres'
 import Languages from './Languages'
 import Tags from './Tags'
 import OriginalCost from './OriginalCost'
 
 import styles from "./GameInfo.module.scss";
+import { UpdateGame, Game } from './Types'
 
-const game = {}
+type Props = {
+    game:Game,
+    updateGame:UpdateGame
+}
 
-function GameInfo() {
+const GameInfo: FC<Props> = ({game, updateGame}) => {
     return (
         <div className={styles.container}>
-            <OriginalCost />
-            <Genres />
-            <Languages />
-            <Tags />
+            <OriginalCost game={game} updateGame={updateGame} />
+            <Genres game={game} updateGame={updateGame} />
+            <Languages game={game} updateGame={updateGame} />
+            <Tags game={game} updateGame={updateGame} />
         </div>
 
     )
