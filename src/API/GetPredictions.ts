@@ -6,7 +6,7 @@ async function getGame(game:Game):Promise<number> {
     let prediction = 0
     try {
         const gameValues = convertGame(game)
-        const response = await axios.get('/game', {
+        const response = await axios.get('http://game-oracle.herokuapp.com/game', {
             params: {
                 game: gameValues
             }

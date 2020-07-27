@@ -5,7 +5,7 @@ const axios = require('axios').default;
 async function getGames(score:number, amount:number): Promise<GameInfo[]> {
     let games:GameInfo[] = []
     try {
-        const response = await axios.get('/games', {
+        const response = await axios.get('http://game-oracle.herokuapp.com/games', {
             params: {
                 score,
                 amount
