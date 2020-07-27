@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Game Oracle",
+  "name": "Predict the success of game designs",
   "icons": [
     {
       "src": "favicon.ico",
